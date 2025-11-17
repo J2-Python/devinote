@@ -14,6 +14,7 @@ elif url.startswith("postgresql://") and "+psycopg" not in url:
     url = "postgresql+psycopg://" + url[len("postgresql://")]
 
 # engine=create_engine(settings.DATABASE_URL,echo=False,connect_args={"check_same_thread":False} if "sqlite" in settings.DATABASE_URL else {})
+print(f"app.core.conf: {url}")
 engine = create_engine(url, pool_pre_ping=True)
 
 

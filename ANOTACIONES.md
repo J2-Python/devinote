@@ -67,3 +67,13 @@ alembic upgrade head
 ```
 alembic downgrade -1
 ```
+
+### Build Command
+```
+pip install -r requirements.txt
+```
+
+### Start Command
+```
+alembic upgrade head && gunicorn-k uvicorn.workers.UvicornWorker -w ${web_concurrency:-2} -b 0.0.0.0:$PORT app.main:app
+```
