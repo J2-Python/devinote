@@ -8,7 +8,7 @@ from sqlalchemy import pool
 from alembic import context
 from sqlmodel import SQLModel
 
-from app.models.label import Label
+from app.models.label import Label,NoteLabelLink
 from app.models.note import Note
 from app.models.user import User
 from app.models.share import LabelShare, NoteShare
@@ -36,6 +36,7 @@ load_dotenv()  # carga las variables de entorno
 #DATABASE_URL = os.getenv("DATABASE_URL")
 
 raw_url = os.environ["DATABASE_URL"]
+print(f"alembic.env raw_url:{raw_url}")
 url = raw_url
 
 if url.startswith("postgres://"):
@@ -45,6 +46,7 @@ elif url.startswith("postgresql://") and "+psycopg" not in url:
     url = "postgresql+psycopg://" + url[len("postgresql://")]
     
 DATABASE_URL=url
+print(f"alembic.env DATABASE_URL:{DATABASE_URL}")
 
 # target_metadata = None
 target_metadata = SQLModel.metadata
@@ -95,7 +97,7 @@ def run_migrations_online() -> None:
     #     poolclass=pool.NullPool,
     # )
     connectable = create_engine(
-        DATABASE_URL or "",
+        DATABASE_URL,
         poolclass=pool.NullPool,
         future=True,  # par ausar la configuracion 2.0
     )
