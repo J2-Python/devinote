@@ -40,10 +40,14 @@ print(f"alembic.env raw_url:{raw_url}")
 url = raw_url
 
 if url.startswith("postgres://"):
-    url = "postgresql+psycopg://" + url[len("postgres://")]
-    print(f"url {url}")
+    print(f" len {len("postgres://")}")
+    print(f" slicing {url[len("postgres://"):]}")
+    url = "postgresql+psycopg://" + url[len("postgres://"):]
 elif url.startswith("postgresql://") and "+psycopg" not in url:
-    url = "postgresql+psycopg://" + url[len("postgresql://")]
+    print(f" len {len("postgresql://")}")
+    print(f" slicing {url[len("postgresql://"):]}")
+    url = "postgresql+psycopg://" + url[len("postgresql://"):]
+
     
 DATABASE_URL=url
 print(f"alembic.env DATABASE_URL:{DATABASE_URL}")
