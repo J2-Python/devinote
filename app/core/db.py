@@ -10,6 +10,7 @@ url = raw_url
 if url.startswith("postgres://"):
     url = "postgresql+psycopg://" + url[len("postgres://"):]
 elif url.startswith("postgresql://") and "+psycopg" not in url:
+    #! el slicing [13:0] de "postgresql://devinotedb_mw69_user:31F3Tl9IwdQnoXMYxOChQiXKZwW7xUNn@dpg-d4cljp3ipnbc739hjpbg-a/devinotedb_mw69" obtiene "devinotedb_mw69_user:31F3Tl9IwdQnoXMYxOChQiXKZwW7xUNn@dpg-d4cljp3ipnbc739hjpbg-a/devinotedb_mw69"
     url = "postgresql+psycopg://" + url[len("postgresql://"):]
 
 
