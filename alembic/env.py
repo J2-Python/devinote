@@ -33,8 +33,18 @@ if config.config_file_name is not None:
 
 load_dotenv()  # carga las variables de entorno
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+#DATABASE_URL = os.getenv("DATABASE_URL")
 
+raw_url = os.environ["DATABASE_URL"]
+url = raw_url
+
+if url.startswith("postgres://"):
+    url = "postgresql+psycopg://" + url[len("postgres://")]
+    print(f"url {url}")
+elif url.startswith("postgresql://") and "+psycopg" not in url:
+    url = "postgresql+psycopg://" + url[len("postgresql://")]
+    
+DATABASE_URL=url
 
 # target_metadata = None
 target_metadata = SQLModel.metadata

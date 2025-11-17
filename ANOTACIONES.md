@@ -20,6 +20,12 @@ fastapi dev main.py
 pip install -r requirements.txt
 ```
 
+### Para actualizar el requirements.txt
+```
+pip freeze > requirements.txt
+```
+
+
 ### Crear base de datos en postgres
 ```
 psql postgres
